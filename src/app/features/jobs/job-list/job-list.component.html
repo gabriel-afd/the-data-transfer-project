@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="header">
+    <div class="title-group">
+      <h2>Jobs de transferência</h2>
+      <p>Histórico e execuções ativas</p>
+    </div>
+    <button mat-flat-button color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon> Novo job</button>
+  </div>
+
+  <table mat-table [dataSource]="jobs()" class="mat-elevation-z0">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Tabelas</th>
+      <td mat-cell *matCellDef="let job"><strong>{{job.tables}}</strong></td>
+    </ng-container>
+
+    <ng-container matColumnDef="route">
+      <th mat-header-cell *matHeaderCellDef>Rota</th>
+      <td mat-cell *matCellDef="let job">
+        <span class="route-text">SQL Prod <mat-icon>arrow_right_alt</mat-icon> PG Cloud</span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let job">
+        <span class="status-badge" [ngClass]="job.status">
+          <span class="dot"></span> {{ job.status === 'running' ? 'Rodando' : 'Concluído' }}
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="progress">
+      <th mat-header-cell *matHeaderCellDef> Progresso </th>
+      <td mat-cell *matCellDef="let job">
+        <div class="progress-container">
+          <mat-progress-bar mode="determinate" [value]="job.progress"></mat-progress-bar>
+          <span class="progress-percent">{{job.progress}}%</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['name', 'route', 'status', 'progress']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'route', 'status', 'progress'];"></tr>
+
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<mat-toolbar class="main-toolbar">
+  <!-- Logo -->
+  <div class="logo-section" routerLink="/">
+    <span class="logo-text">DataFlow</span>
+  </div>
+
+  <div class="divider-vertical"></div>
+
+  <nav class="nav-menu">
+    <a mat-button routerLink="/connections" routerLinkActive="active-link">
+      <mat-icon>swap_horizontal_circle</mat-icon>
+      Conexões
+    </a>
+
+    <a mat-button routerLink="/jobs" routerLinkActive="active-link">
+      <mat-icon>sync</mat-icon>
+      Jobs
+    </a>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <div class="user-section">
+    <div class="user-info">
+      <span class="user-name">Admin</span>
+      <span class="user-role">Administrador</span>
+    </div>
+    <div class="user-avatar">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+  </div>
+</mat-toolbar>

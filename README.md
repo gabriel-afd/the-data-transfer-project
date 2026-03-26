@@ -1,59 +1,241 @@
-# TheDataTransferProject
+# 🚀 DataFlow - Data Transfer Manager
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+## 📌 Sobre o projeto
 
-## Development server
+O **DataFlow** é uma aplicação web desenvolvida com Angular que simula a criação e execução de jobs de transferência de dados entre diferentes bancos (ex: SQL Server → PostgreSQL).
 
-To start a local development server, run:
+O objetivo principal do projeto é **praticar e consolidar conceitos modernos do Angular**, com foco em arquitetura, estado, formulários reativos e boas práticas de desenvolvimento frontend.
+
+> ⚠️ Este projeto atualmente é um **simulador frontend**. O backend será implementado futuramente em ASP.NET Core.
+
+---
+
+## 🎯 Objetivo
+
+* Simular um sistema de migração de dados (ETL simplificado)
+* Treinar Angular moderno (standalone + signals)
+* Criar um projeto com **cara de sistema real**
+* Servir como **portfólio para vagas de frontend Angular (Jr/Pleno)**
+
+---
+
+## 🧩 Funcionalidades
+
+### 🔌 Conexões
+
+* Listagem de conexões cadastradas
+* Criação de novas conexões via modal
+* Tipos suportados:
+
+  * SQL Server
+  * PostgreSQL
+* Exibição de status (Online)
+
+---
+
+### ⚙️ Jobs de transferência
+
+* Criação de jobs entre duas conexões
+* Configurações:
+
+  * Origem e destino
+  * Tabelas (input livre)
+  * Tipo de carga:
+
+    * Full Load
+    * Incremental
+  * Estratégia de schema:
+
+    * Criar tabela
+    * Usar existente
+  * Opção de truncar tabela
+
+---
+
+### 📊 Execução simulada
+
+* Jobs iniciam automaticamente como **running**
+* Progresso atualizado dinamicamente
+* Status possíveis:
+
+  * Running
+  * Completed
+  * Failed (simulado futuramente)
+
+---
+
+### 🎨 Interface
+
+* Layout inspirado em sistemas reais de dados
+* Header com navegação
+* Modais para criação
+* Tabelas organizadas
+* Feedback visual (status + progresso)
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+* Angular (Standalone Components)
+* Angular Material
+* TypeScript
+* SCSS
+* Signals (state management)
+* Reactive Forms
+* Angular Router
+
+---
+
+## 🧠 Conceitos de Angular aplicados
+
+### ✔ Componentização
+
+* Separação por features:
+
+  * `connections`
+  * `jobs`
+* Componentes reutilizáveis e organizados
+
+---
+
+### ✔ Standalone Components
+
+* Projeto sem módulos tradicionais (NgModule)
+* Uso direto de `imports` nos componentes
+
+---
+
+### ✔ Injeção de dependência (DI)
+
+* Uso de `inject()` ao invés de constructor
+* Services centralizando lógica de negócio
+
+---
+
+### ✔ State Management com Signals
+
+* Gerenciamento de estado simples e reativo
+
+Exemplo:
+
+```ts
+connections = signal<Connection[]>([]);
+```
+
+* Atualização com `.set()` e `.update()`
+* Reatividade automática na UI
+
+---
+
+### ✔ Reactive Forms
+
+* Formulários robustos com `FormBuilder`
+* Validações:
+
+  * Campos obrigatórios
+  * Regras de negócio (ex: origem ≠ destino)
+
+---
+
+### ✔ Angular Material
+
+* Dialog (modais)
+* Buttons
+* Toolbar
+* Progress bar
+
+---
+
+### ✔ Comunicação entre componentes
+
+* Uso de `MatDialog`
+* `afterClosed()` para controle de fluxo
+
+---
+
+### ✔ Simulação de backend
+
+* Uso de `setInterval` para simular progresso de jobs
+* Estrutura preparada para futura integração com API
+
+---
+
+## 🧱 Estrutura do projeto
+
+```
+src/app/
+  core/
+    models/
+    services/
+
+  features/
+    connections/
+      connection-list/
+      connection-form/
+
+    jobs/
+      job-list/
+      job-form/
+
+  layout/
+    header/
+```
+
+---
+
+## ▶️ Como rodar o projeto
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🔮 Próximos passos (backend)
 
-## Building
+O backend será desenvolvido em **ASP.NET Core** e deverá incluir:
 
-To build the project run:
+* API REST para:
 
-```bash
-ng build
-```
+  * Conexões
+  * Jobs
+* Execução real de migração de dados
+* Validação de conexão com banco
+* Processamento assíncrono de jobs
+* Possível uso de:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+  * Background Services
+  * SignalR (tempo real)
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 💡 Possíveis melhorias futuras
 
-```bash
-ng test
-```
+* Autenticação (JWT)
+* Dashboard com métricas
+* Logs de execução
+* Retry de jobs
+* Filtros e busca
+* Dark mode completo
+* Integração com bancos reais
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## 🧑‍💻 Autor
 
-```bash
-ng e2e
-```
+Gabriel Medeiros
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 📣 Observação
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto foi desenvolvido com foco em aprendizado e prática, mas seguindo padrões utilizados em aplicações reais de mercado.
+
+---

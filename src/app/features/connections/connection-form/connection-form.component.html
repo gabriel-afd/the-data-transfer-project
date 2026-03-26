@@ -1,0 +1,55 @@
+
+<div class="database-wrapper">
+  <div class="database-grid">
+    <div class="database-item" *ngFor="let database of databases()" (click)="selectDatabase(database)">
+      <ng-container *ngIf="database.icon";>
+        <img class="database-icon-img" [src]="database.icon" [alt]="database.name">
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<h2 mat-dialog-title class="dialog-title">Nova conexão</h2>
+<div mat-dialog-content>
+  <p class="subtitle">Configure os detalhes da sua fonte de dados abaixo.</p>
+
+  <form [formGroup]="form" class="connection-form">
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome da Conexão</mat-label>
+        <input matInput placeholder="Ex: Produção SQL" formControlName="name">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row split">
+      <mat-form-field appearance="outline" class="flex-3">
+        <mat-label>Host</mat-label>
+        <input matInput placeholder="localhost" formControlName="host">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="flex-1">
+        <mat-label>Porta</mat-label>
+        <input matInput type="number" placeholder="1433" formControlName="port">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Database</mat-label>
+        <input matInput placeholder="nome_do_banco" formControlName="database">
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Usuário</mat-label>
+        <input matInput placeholder="admin" formControlName="user">
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end" class="dialog-footer">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="save()" [disabled]="!form.valid">Salvar Conexão</button>
+</div>

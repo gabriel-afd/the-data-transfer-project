@@ -1,0 +1,67 @@
+<h2 mat-dialog-title class="dialog-title">Novo job de transferência</h2>
+
+<div mat-dialog-content>
+  <p class="subtitle">Configure a migração entre dois bancos</p>
+
+  <form [formGroup]="form" class="connection-form">
+
+    <div class="form-row split">
+      <mat-form-field appearance="outline">
+        <mat-label>ORIGEM</mat-label>
+        <mat-select formControlName="sourceConnectionId">
+          <mat-option value="">Selecione</mat-option>
+          <mat-option *ngFor="let c of connections()" [value]="c.id">{{ c.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>DESTINO</mat-label>
+        <mat-select formControlName="targetConnectionId">
+          <mat-option value="">Selecione</mat-option>
+          <mat-option *ngFor="let c of connections()" [value]="c.id">{{ c.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>TABELAS</mat-label>
+        <input matInput formControlName="tables" placeholder="users, orders">
+        <mat-hint>Separe por vírgula. Deixe vazio para migrar todas as tabelas.</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row split" style="margin-top: 10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>MODO</mat-label>
+        <mat-select formControlName="mode">
+          <mat-option value="full">Carga completa (Full load)</mat-option>
+          <mat-option value="incremental">Incremental</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>SCHEMA NO DESTINO</mat-label>
+        <mat-select formControlName="schema">
+          <mat-option value="create">Criar (CREATE TABLE)</mat-option>
+          <mat-option value="exists">Já existe</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="checkbox-wrapper">
+      <mat-checkbox formControlName="truncate" color="primary">
+        Truncar tabela de destino antes de carregar
+      </mat-checkbox>
+    </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions align="end" class="dialog-footer">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="save()">
+    <mat-icon>play_arrow</mat-icon> Iniciar job
+  </button>
+</div>
