@@ -10,6 +10,19 @@ O objetivo principal do projeto é **praticar e consolidar conceitos modernos do
 
 ---
 
+## 📸 Visual da Aplicação
+
+### Listagem de Conexões e Jobs
+![Tela de Conexões](/prints/image_1.png)
+![Tela de Jobs](/prints/image_3.png)
+
+
+### Configuração de Transferência
+![Modal de Conexão](/prints/image_2.png)
+![Modal de Job](/prints/image_4.png)
+
+---
+
 ## 🎯 Objetivo
 
 * Simular um sistema de migração de dados (ETL simplificado)
